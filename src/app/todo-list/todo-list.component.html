@@ -1,0 +1,27 @@
+
+<!-- async pipe ile kullanım şekli  async ile subscripte view de yapılıyor -->
+<h1>Async Pipe</h1>
+<div *ngFor="let item of todoList$ | async">
+  <div>{{item.title}}</div>
+</div>
+
+<hr>
+
+<h1>Normal For</h1>
+<!-- arayüzde bir sıkıntı yoksa default yöntem -->
+<div>
+  <div *ngFor="let todo of todoList; let i=index">
+    index: {{i}}
+    {{todo.title}} {{todo.completed ? 'bitti':'bekliyor'}}
+  </div>
+</div>
+
+
+<hr>
+
+<h1>Template For</h1>
+
+<!-- forOf dönerken arayüzde kaymalar olmaması için bu yöntem -->
+<ng-template ngFor let-item [ngForOf]="todoList" let-i="index" [ngForTrackBy]="trackByFn">
+  <li>{{item.title}}</li>
+</ng-template>

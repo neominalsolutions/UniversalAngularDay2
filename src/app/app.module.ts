@@ -8,6 +8,10 @@ import { HookChildComponent } from './hooks/hook-child/hook-child.component';
 import { ApiLogger, ConsoleLogger, LoggerKey } from './providers/Ilogger';
 import { ProviderTestComponent } from './providers/provider-test/provider-test.component';
 import { environment } from 'src/environments/environment';
+import { TodoService } from './services/todo.service';
+import { HttpClientModule } from '@angular/common/http';
+import { PromisesComponent } from './promises/promises.component';
+import { TodoListComponent } from './todo-list/todo-list.component';
 
 @NgModule({
   declarations: [
@@ -15,15 +19,24 @@ import { environment } from 'src/environments/environment';
     HooksComponent,
     HookChildComponent,
     ProviderTestComponent,
+    PromisesComponent,
+    TodoListComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [
+    // {
+    //   provide: {
+    //     // eğer servis  providedIn: 'root' olarak tanımlanmış ise buraya eklemeye gerek yok (singleton instance root düzeyinde çalışır.)
+    //     TodoService, // type of
+    //   },
+    //   useClass: TodoService,
+    // },
     {
-      provide: LoggerKey,
-      useClass: ApiLogger,
+      provide: LoggerKey, // InjectionToken ile
+      useClass: ApiLogger, // singleton
     },
     {
-      provide: 'apiKey',
+      provide: 'apiKey', // string Key ile
       useValue: environment.apiKey,
     },
     {
