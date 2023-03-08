@@ -1,0 +1,10 @@
+
+<!-- buraya işaretlenen yere dışarıdan bir element yada elementler basılabilir -->
+<!-- dışarıdan değer gelecek bir section açtık -->
+
+data: {{data}}
+<h1>Hooks</h1>
+<ng-content></ng-content>
+<app-hook-child #child></app-hook-child>
+
+<button (click)="onClick()">Btn</button>
